@@ -1,6 +1,6 @@
 <?php 
 
-    const BASE_URL = "http://localhost/EjemploTienda/";
+    const BASE_URL = "http://localhost/Tienda/";
     const LIBS = "Libraries/";
     const VIEWS = "Views/";
 

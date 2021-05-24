@@ -16,7 +16,7 @@ class login extends Controllers{
 
     public function comprobar(){
         $user = $_POST['usuario'];
-        $pass = $_POST['pass'];
+        $pass = md5($_POST['pass']);
 
         $data = $this->model->validaLogin($user,$pass);
 
@@ -52,6 +52,23 @@ class login extends Controllers{
         $this->model->cerrarSesion();
         header("Location: ../");
 
+    }
+
+    public function registro(){    
+        $this->views->getView($this,"RegistroClientes");
+    }
+
+    public function registrarse(){
+        $nombre = $_POST['nombre'];
+        $apellidos = $_POST['apellidos'];
+        $dni = $_POST['dni'];
+        $direccion = $_POST['direccion'];
+        $email = $_POST['email'];
+        $pass = md5($_POST['pass']);
+        $celular = $_POST['celular'];
+        $this->model->addCliente($nombre,$apellidos,$dni,$celular,$direccion,$email,$pass);
+
+        header("Location: http://localhost/Tienda/");
     }
 
 

@@ -19,6 +19,11 @@ class panel extends Controllers{
         $this->views->getView($this,"Roles",$data);
     }
 
+    public function familias(){
+        $data = $this->model->getFamilias();
+        $this->views->getView($this,"Familias",$data);
+    }
+
 
    
 }

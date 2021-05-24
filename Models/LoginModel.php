@@ -13,18 +13,29 @@
             return $request; //Retorna la consulta hecha en la clase SqlServer
         }
 
-       
-        public function getUser(int $id){
-            $query = "SELECT * FROM empleados WHERE id = $id";
-            $request = $this->select($query);
+        public function addCliente(string $nombre, string $apellidos, string $dni, string $celular, string $direccion, string $email, string $pass){
+            $query = "INSERT INTO usuarios(nombre,apellidos,dni,celular,direccion,email,pass,id_rol) values('".$nombre."', '".$apellidos."', '".$dni."', '".$celular."', '".$direccion."', '".$email."', '".$pass."', 2)";
+            $request_insert = $this->insert($query);
 
-            return $request; //Retorna la consulta hecha en la clase SqlServer
+            return $request_insert; //Retorna la consulta hecha en la clase SqlServer
+
         }
+
 
         public function cerrarSesion(){
             session_start();
             session_destroy();
 
+        }
+
+
+
+
+        public function getUser(int $id){
+            $query = "SELECT * FROM empleados WHERE id = $id";
+            $request = $this->select($query);
+
+            return $request; //Retorna la consulta hecha en la clase SqlServer
         }
 
 
@@ -56,6 +67,8 @@
 
             return $request; //Retorna la consulta hecha en la clase SqlServer
         }
+
+        
 
      
         

@@ -13,6 +13,13 @@
             return $request; //Retorna la consulta hecha en la clase SqlServer
         }
 
+        public function getFamilias(){
+            $query = "SELECT * FROM familias";
+            $request = $this->select_all($query);
+
+            return $request; //Retorna la consulta hecha en la clase SqlServer
+        }
+
 
      
         

@@ -26,7 +26,7 @@
               </div>
               <p class="login-card-description">Iniciar Sesión</p>
 
-              <form action="login/comprobar" method="POST">
+              <form action="login/comprobar" method="POST" autocomplete="off">
                   <div class="form-group">
                     <label for="usuario" class="sr-only">DNI</label>
                     <input type="text" name="usuario" id="email" class="form-control" placeholder="DNI">
@@ -38,7 +38,7 @@
                   <input type="submit" name="login" id="login" class="btn btn-block login-btn mb-4" type="button" value="Login">
                 </form>
                 <a href="#!" class="forgot-password-link">¿Olvidaste tu contraseña?</a>
-                <p class="login-card-footer-text">¿Notienes una cuenta? <a href="#!" class="text-reset">Regístrate aquí</a></p>
+                <p class="login-card-footer-text">¿No tienes una cuenta? <a href="Login/Registro" class="text-reset">Regístrate aquí</a></p>
                 <nav class="login-card-footer-nav">
                   <a href="#!">Todos los derechos reservados.</a>
                 </nav>

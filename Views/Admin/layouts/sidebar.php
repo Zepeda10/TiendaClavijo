@@ -13,6 +13,10 @@
                                     class="hide-menu">Roles</span></a></li>
 
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                href="../panel/familias" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span
+                                    class="hide-menu">Familias</span></a></li>
+
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                                 href="../clientes/clientes" aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span
                                     class="hide-menu">Clientes</span></a></li>
 

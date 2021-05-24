@@ -5,6 +5,14 @@
 
 ?>
 
+<style>
+    .imagen{
+        width: 50px;
+        height: 50px;
+        border-radius: 1px;
+    }
+</style>
+
 <div class="page-wrapper">
             <!-- ============================================================== -->
             <!-- Bread crumb and right sidebar toggle -->
@@ -13,6 +21,7 @@
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
                         <h4 class="page-title">Productos</h4>
+                        <button class="btn btn-primary mx-3 rounded"><a href="../productos/muestraAgregar" class="link-light">Agregar</a></button>
                         <div class="ms-auto text-end">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
@@ -32,7 +41,9 @@
                 <div class="row">
                     <div class="col-12">
                     <div class="card">
+                           
                             <div class="card-body">
+                            
                                 <h5 class="card-title">Tabla de productos</h5>
                                 <div class="table-responsive">
                                     <table id="zero_config" class="table table-striped table-bordered">
@@ -40,13 +51,15 @@
                                             <tr>
                                                 <th>Id</th>
                                                 <th>Código de Barras</th>
-                                                <th>Producto</th>
+                                                <th>Producto</th>                                                
+                                                <th>Familia</th>
                                                 <th>Descripción</th>
                                                 <th>Precio Compra</th>
                                                 <th>Precio Venta</th>
                                                 <th>Stock</th>
                                                 <th>Estado</th>
                                                 <th>Proveedor</th>
+                                                <th>Imagen</th>
                                             </tr>
                                         </thead>
                                         <tbody>     
@@ -56,12 +69,20 @@
                                                     echo "<td>".$row['id']."</td>";
                                                     echo "<td>".$row['cod_barras']."</td>";
                                                     echo "<td>".$row['nombre']."</td>";
+                                                    echo "<td>".$row['fam']."</td>";
                                                     echo "<td>".$row['descripcion']."</td>";
                                                     echo "<td>".$row['precio_compra']."</td>";
                                                     echo "<td>".$row['precio_venta']."</td>";
                                                     echo "<td>".$row['stock']."</td>";
                                                     echo "<td>".$row['estado']."</td>";
                                                     echo "<td>".$row['apellidos']."</td>";
+                                                    echo "<td>";
+                                                        if($row['imagen']!=""){
+                                                            echo "<img class='imagen' src='../imagenes_subidas/".$row['imagen']."'  />";
+                                                        }else{
+                                                            echo "<img class='imagen' src='../imagenes_subidas/default.png'  />";
+                                                        }
+                                                    echo "</td>";
                                                     echo "</tr>";
                                                 }
                                             ?>                 
