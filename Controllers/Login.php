@@ -32,7 +32,7 @@ class login extends Controllers{
 
             }
 
-            if($_SESSION["rol"] == 1){ //Admin o similares
+            if($_SESSION["rol"] !=2 ){ //Admin o similares
                 header("Location: http://localhost/Tienda/panel/panel");
 
             }else if($_SESSION["rol"] == 2){ //Cliente

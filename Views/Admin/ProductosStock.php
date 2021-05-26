@@ -71,13 +71,14 @@
                                                 <th>Estado</th>
                                                 <th>Proveedor</th>
                                                 <th>Imagen</th>
-                                                <?php
-                                                if($_SESSION['rol'] == 1){
-                                                    echo "<th>Editar</th>
-                                                          <th>Eliminar</th>";
-                                                }
-                                                ?>
-                                                
+                                                <?php  if($_SESSION['rol'] != 6){ ?>
+                                                <th>Editar</th>
+                                                <th>Eliminar</th>
+                                                <?php  } ?>
+
+                                                <?php  if($_SESSION['rol'] == 6){ ?>
+                                                    <th>Surtir</th>
+                                                <?php  } ?>
                                             </tr>
                                         </thead>
                                         <tbody>     
@@ -101,9 +102,14 @@
                                                             echo "<img class='imagen' src='../imagenes_subidas/default.png'  />";
                                                         }
                                                     echo "</td>";
-                                                    if($_SESSION['rol'] == 1){
+                                                    if($_SESSION['rol'] != 6){
                                                         echo "<td><a href='../productos/editar/".$row['id']."'>Editar</a></td>";
-                                                        echo "<td><a onclick = 'confirmaEliminar(event)' href='../productos/eliminar/".$row['id']."'><i class='fas fa-trash-alt'></i></a></td>";                                       
+                                                        echo "<td><a onclick = 'confirmaEliminar(event)' href='../productos/eliminar/".$row['id']."'><i class='fas fa-trash-alt'></i></a></td>";
+                                                    }
+
+
+                                                    if($_SESSION['rol'] == 6){
+                                                        echo "<td><a href='../productos/surtir/".$row['id']."'>Surtir</a></td>";                                              
                                                     }
                                                     echo "</tr>";
                                                 }

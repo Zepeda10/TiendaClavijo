@@ -298,75 +298,21 @@
                             <div class="card-body">                  
                                 <h5 class="card-title">Formulario de productos</h5>
 
-                                <form action="../../productos/update" method="POST">
-                                <?php  while( $row = sqlsrv_fetch_array( $data['producto'], SQLSRV_FETCH_ASSOC) ) { ?>
+                                <form action="../../productos/updateSurtir" method="POST">
+                                <?php  while( $row = sqlsrv_fetch_array( $data, SQLSRV_FETCH_ASSOC) ) { ?>
                                     <input id="modificar" type="hidden" name="id" value="<?= $row['id']; ?>">
 
                                     <div class="row my-3">
                                         <div class="col">
                                             <label for="nombre">Nombre del producto</label>
-                                            <input type="text" class="form-control" id="nombre" name="nombre"  value="<?= $row['nombre']; ?>">
+                                            <input type="text" class="form-control" id="nombre" name="nombre"  value="<?= $row['nombre']; ?>" readonly>
                                         </div>
                                         <div class="col">
-                                            <label for="cod_barras">Código de Barras</label>
-                                            <input type="text" class="form-control" id="cod_barras" name="cod_barras" value="<?= $row['cod_barras']; ?>">
-                                        </div>
-                                    </div>
-                            
-                                    <div class="row my-3">
-                                        <div class="col">
-                                            <label for="precio_compra">Precio Compra</label>
-                                            <input type="text" class="form-control" id="precio_compra" name="precio_compra"  value="<?= $row['precio_compra']; ?>">
-                                        </div>
-                                        <div class="col">
-                                            <label for="precio_venta">Precio Venta</label>
-                                            <input type="text" class="form-control" id="precio_venta" name="precio_venta"  value="<?= $row['precio_venta']; ?>">
-                                        </div>
-                                        <div class="col">
-                                            <label for="stock">Stock</label>
-                                            <input type="number" class="form-control" id="stock" name="stock" value="<?= $row['stock']; ?>">
+                                            <label for="cod_barras">Agregar Stock</label>
+                                            <input type="text" class="form-control" id="stock" name="stock" value="<?= $row['stock']; ?>">
                                         </div>
                                     </div>
-
-                                    <div class="row my-3">
-                                        <div class="col">
-                                            <label for="descripcion">Descripción</label>
-                                            <textarea  type="text" class="form-control" id="descripcion" name="descripcion" rows="3" ><?= $row['descripcion']; ?></textarea>                           
-                                        </div>                                       
-                                    </div>
-
-
-                                    <div class="row my-3">
-                                        <div class="col">
-                                            <label for="estado">Estado</label>
-                                            <select class="form-select" name="estado" aria-label="Default select example">
-                                                <option value="1">1</option>
-                                                <option value="0">0</option>
-                                            </select>
-                                        </div>
-                                        <div class="col">
-                                            <label for="proveedor">Proveedor</label>
-                                            <select class="form-select" name="id_proveedor" aria-label="Default select example">
-                                            <?php
-                                                while( $row = sqlsrv_fetch_array( $data['prov'], SQLSRV_FETCH_ASSOC) ) {
-                                                    echo '<option value="'.$row['id'].'">'.$row['nombre'].'</option>';
-                                                }
-                                            ?>
-                                            </select>
-                                        </div>
-
-                                        <div class="col">
-                                            <label for="proveedor">Familia</label>
-                                            <select class="form-select" name="id_familia" aria-label="Default select example">
-                                            <?php
-                                                while( $row = sqlsrv_fetch_array( $data['fam'], SQLSRV_FETCH_ASSOC) ) {
-                                                    echo '<option value="'.$row['id'].'">'.$row['nombre'].'</option>';
-                                                }
-                                            ?>
-                                            </select>
-                                        </div>                                     
-                                    </div>
-
+    
                                    
                                     <button type="submit" class="btn btn-primary">Aceptar</button>
                                 </form>

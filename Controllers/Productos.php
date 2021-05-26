@@ -9,6 +9,13 @@ class productos extends Controllers{
     public function productos(){
         $data = $this->model->getProductos();
         $this->views->getView($this,"Productos",$data);
+
+        while( $row = sqlsrv_fetch_array( $data, SQLSRV_FETCH_ASSOC) ) {
+            if($row['stock'] <= 0){
+                $this->model->updateStatus($row['id']);
+
+            }
+        }    
     }
 
     public function muestraAgregar(){
@@ -102,6 +109,28 @@ class productos extends Controllers{
 	public function eliminar($id){
         $this->model->deleteProducto($id);
 		header("Location: http://localhost/Tienda/productos/productos");
+    }
+
+    public function stock(){
+        $data = $this->model->getProductosSinStock();
+        $this->views->getView($this,"ProductosStock",$data);
+    }
+
+    public function surtir($id){
+        $data = $this->model->getProducto($id);
+        $this->views->getView($this,"surtir_producto",$data);
+    }
+
+    public function updateSurtir(){
+        $id = $_POST['id'];
+        $stock = $_POST['stock'];
+        $this->model->surtirStock($id,$stock);
+
+        if($stock > 0){
+            $this->model->updateCeroStock($id);
+        }
+
+        header("Location: http://localhost/Tienda/productos/stock");
     }
 
 
