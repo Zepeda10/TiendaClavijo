@@ -35,7 +35,26 @@
             return $request; //Retorna la consulta hecha en la clase SqlServer
         }
 
-       
+        public function getProducto(int $id){
+            $query = "SELECT p.id, p.cod_barras, p.nombre, p.descripcion, p.precio_compra, p.precio_venta, p.stock, p.estado FROM Productos p WHERE id =".$id;
+            $request = $this->select_all($query);
+
+            return $request; //Retorna la consulta hecha en la clase SqlServer
+        }
+
+        public function updateProducto(int $id, string $cod_barras, string $nombre, string $descripcion, float $precio_compra, float $precio_venta, int $stock, bool $estado, int $id_prov, int $id_fam){
+            $query = "UPDATE Productos SET cod_barras = '".$cod_barras."' , nombre = '".$nombre."' , descripcion = '".$descripcion."', precio_compra = ".$precio_compra.", precio_venta = ".$precio_venta.", stock = ".$stock.", estado = ".$estado.", id_proveedor = ".$id_prov.", id_familia = ".$id_fam." WHERE id = $id";
+            $request = $this->update($query);
+
+            return $request; //Retorna la consulta hecha en la clase SqlServer
+        }
+
+        public function deleteProducto(int $id){
+            $query = "DELETE FROM Productos WHERE id = $id";
+            $request = $this->delete($query);
+
+            return $request; //Retorna la consulta hecha en la clase SqlServer
+        }
        
      
         

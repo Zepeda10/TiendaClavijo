@@ -74,6 +74,37 @@ class productos extends Controllers{
         header("Location: http://localhost/Tienda/productos/productos");
     }
 
+	public function editar($id){
+		$data['fam'] = $this->model->getFamilias();
+        $data['prov']  = $this->model->getProveedores();
+        $data['producto'] = $this->model->getProducto($id);
+        $this->views->getView($this,"editar_producto",$data);
+		
+    }
+
+    public function update(){
+        $id = $_POST['id'];
+        $cod_barras = $_POST['cod_barras'];
+        $nombre = $_POST['nombre'];
+        $descripcion = $_POST['descripcion'];
+        $precio_compra = $_POST['precio_compra'];
+        $precio_venta = $_POST['precio_venta'];
+        $stock = $_POST['stock'];
+        $estado = $_POST['estado'];
+        $id_prov = $_POST['id_proveedor'];
+        $id_fam = $_POST['id_familia'];
+
+        $this->model->updateProducto($id,$cod_barras,$nombre,$descripcion,$precio_compra,$precio_venta,$stock,$estado,$id_prov,$id_fam);
+
+        header("Location: http://localhost/Tienda/productos/productos");
+    }
+
+	public function eliminar($id){
+        $this->model->deleteProducto($id);
+		header("Location: http://localhost/Tienda/productos/productos");
+    }
+
+
 }
 
 ?>

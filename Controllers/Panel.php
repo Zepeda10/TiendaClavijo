@@ -24,6 +24,33 @@ class panel extends Controllers{
         $this->views->getView($this,"Familias",$data);
     }
 
+    public function muestraAgregarFam(){
+        $this->views->getView($this,"add_familia");
+    }
+
+    public function agregarFamilia(){
+        $nombre = $_POST['nombre'];
+        $this->model->addFamilia($nombre);
+        header("Location: http://localhost/Tienda/panel/familias");
+    }
+
+    public function editarFam($id){
+        $data['familia'] = $this->model->getFamilia($id);
+        $this->views->getView($this,"editar_familia",$data);
+    } 
+
+    public function updateFam(){
+        $nombre = $_POST['nombre'];
+        $id = $_POST['id'];
+        $this->model->updateFamilia($nombre,$id);
+        header("Location: http://localhost/Tienda/panel/familias");
+    }
+
+    public function eliminarFam($id){
+        $this->model->deleteFamilia($id);
+        header("Location: http://localhost/Tienda/panel/familias");
+    }
+
 
    
 }

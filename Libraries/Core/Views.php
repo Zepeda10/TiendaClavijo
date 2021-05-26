@@ -32,6 +32,9 @@
             }else if($controller == "empleados"){
                 $view = VIEWS."/Admin/".$view.".php";
 
+            }else if($controller == "pedidos"){
+                $view = VIEWS."/Admin/".$view.".php";
+
             }else{
                 $view = VIEWS.$controller."/".$view.".php";
             }

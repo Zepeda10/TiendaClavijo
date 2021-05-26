@@ -4,6 +4,16 @@
     include ("layouts/sidebar.php");
 
 ?>
+<script languaje="Javascript">
+
+function confirmaEliminar(e){
+    var res = confirm("¿Desea eliminar el registro?");
+    if(res == false){
+        e.preventDefault();
+    }
+}
+
+</script>
 
 <div class="page-wrapper">
                 <!-- ============================================================== -->
@@ -13,6 +23,7 @@
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
                         <h4 class="page-title">Delivery</h4>
+                        <button class="btn btn-primary mx-3 rounded"><a href="../delivery/agregar" class="link-light">Agregar</a></button>
                         <div class="ms-auto text-end">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
@@ -34,6 +45,7 @@
                     <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">Tabla de delivery</h5>
+                                
                                 <div class="table-responsive">
                                     <table id="zero_config" class="table table-striped table-bordered">
                                         <thead>
@@ -45,6 +57,8 @@
                                                 <th>Celular</th>
                                                 <th>Dirección</th>
                                                 <th>Email</th>
+                                                <th>Editar</th>
+                                                <th>Eliminar</th>
                                             </tr>
                                         </thead>
                                         <tbody>     
@@ -58,6 +72,8 @@
                                                     echo "<td>".$row['celular']."</td>";
                                                     echo "<td>".$row['direccion']."</td>";
                                                     echo "<td>".$row['email']."</td>";
+                                                    echo "<td><a href='../delivery/editar/".$row['id']."'>Editar</a></td>";
+					                                echo "<td><a onclick = 'confirmaEliminar(event)' href='../delivery/eliminar/".$row['id']."'><i class='fas fa-trash-alt'></i></a></td>";
                                                     echo "</tr>";
                                                 }
                                             ?>                 
