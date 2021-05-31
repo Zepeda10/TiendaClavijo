@@ -298,7 +298,7 @@
                             <div class="card-body">                  
                                 <h5 class="card-title">Formulario de familias</h5>
 
-                                <form action="../../panel/updateFam" method="POST">
+                                <form action="../../panel/updateFam" method="POST" id="form">
                                 <?php  while( $row = sqlsrv_fetch_array( $data['familia'], SQLSRV_FETCH_ASSOC) ) { ?>
                                     <input id="modificar" type="hidden" name="id" value="<?= $row['id']; ?>">
 
@@ -354,3 +354,23 @@
 </body>
 
 </html>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $("#form").validate({
+            rules: {
+                nombre : {
+                    required: true,
+                    maxlength: 40
+                }  
+            },
+            messages : {
+                nombre: {
+                    required: "Este campo es obligatorio",
+                    maxlength: "No debe tener más de 40 caracteres"
+                }  
+            }
+        });
+    });
+</script>

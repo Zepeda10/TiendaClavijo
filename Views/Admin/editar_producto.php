@@ -298,7 +298,7 @@
                             <div class="card-body">                  
                                 <h5 class="card-title">Formulario de productos</h5>
 
-                                <form action="../../productos/update" method="POST">
+                                <form action="../../productos/update" method="POST" id="form">
                                 <?php  while( $row = sqlsrv_fetch_array( $data['producto'], SQLSRV_FETCH_ASSOC) ) { ?>
                                     <input id="modificar" type="hidden" name="id" value="<?= $row['id']; ?>">
 
@@ -413,3 +413,63 @@
 </body>
 
 </html>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $("#form").validate({
+            rules: {
+                nombre : {
+                    required: true,
+                    maxlength: 40
+                },
+                cod_barras : {
+                    required: true,
+                    maxlength: 15
+                },
+                descripcion : {
+                    required: true,
+                    maxlength: 120
+                },
+                precio_compra : {
+                    required: true,
+                    number: true
+                },
+                precio_venta : {
+                    required: true,
+                    number: true
+                },
+                stock : {
+                    required: true,
+                    number: true
+                }
+            },
+            messages : {
+                nombre: {
+                    required: "Este campo es obligatorio",
+                    maxlength: "No debe tener más de 40 caracteres"
+                },
+                cod_barras : {
+                    required: "Este campo es obligatorio",
+                    maxlength: "No debe tener más de 15 caracteres"
+                },
+                descripcion : {
+                    required: "Este campo es obligatorio",
+                    maxlength: "No debe tener más de 120 caracteres"
+                },
+                precio_compra : {
+                    required: "Este campo es obligatorio",
+                    number: "Solo debe contener números"
+                },
+                precio_venta : {
+                    required: "Este campo es obligatorio",
+                    number: "Solo debe contener números"
+                },
+                stock : {
+                    required: "Este campo es obligatorio",
+                    number: "Solo debe contener números"
+                },
+            }
+        });
+    });
+</script>

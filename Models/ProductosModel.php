@@ -83,6 +83,20 @@
 
             return $request; //Retorna la consulta hecha en la clase SqlServer
        }
+
+       public function addRebastecido(int $id){
+            $query = "INSERT INTO Rebastecidos SELECT cod_barras,nombre,descripcion,precio_compra,precio_venta,stock,estado,id_proveedor FROM Productos WHERE id = ".$id;
+            $request = $this->insert($query);
+
+            return $request; //Retorna la consulta hecha en la clase SqlServer
+       }
+
+       public function getRebastecidos(){
+        $query = "SELECT * FROM Rebastecidos ";
+        $request = $this->select_all($query);
+
+        return $request; //Retorna la consulta hecha en la clase SqlServer
+    }
      
         
     }

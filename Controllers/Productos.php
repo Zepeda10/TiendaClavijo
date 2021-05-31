@@ -130,7 +130,14 @@ class productos extends Controllers{
             $this->model->updateCeroStock($id);
         }
 
+        $this->model->addRebastecido($id);
+
         header("Location: http://localhost/Tienda/productos/stock");
+    }
+
+    public function rebastecidos(){
+        $data = $this->model->getRebastecidos();
+        $this->views->getView($this,"Rebastecidos",$data);
     }
 
 

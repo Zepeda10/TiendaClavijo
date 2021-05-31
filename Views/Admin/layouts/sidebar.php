@@ -53,7 +53,7 @@
                                             class="mdi mdi-note-plus"></i><span class="hide-menu"> Productos sin stock
                                         </span></a></li>
                             <?php  if($_SESSION['rol'] == 1 || $_SESSION['rol'] == 4 ){ ?>
-                                <li class="sidebar-item"><a href="form-wizard.html" class="sidebar-link"><i
+                                <li class="sidebar-item"><a href="../productos/rebastecidos" class="sidebar-link"><i
                                             class="mdi mdi-note-plus"></i><span class="hide-menu"> Productos rebastecidos
                                         </span></a></li>
                             <?php  } ?>
@@ -85,9 +85,10 @@
 
                     <?php  if($_SESSION['rol'] == 1 || $_SESSION['rol'] == 5 ){ ?>
 
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                      <!--  <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                                 href="grid.html" aria-expanded="false"><i class="mdi mdi-blur-linear"></i><span
                                     class="hide-menu">Vender</span></a></li>
+                        -->
                     <?php  } ?>
 
                 

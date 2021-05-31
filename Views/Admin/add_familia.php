@@ -37,7 +37,7 @@
                             <div class="card-body">                  
                                 <h5 class="card-title">Formulario de familias</h5>
 
-                                <form action="../panel/agregarFamilia" method="POST">
+                                <form action="../panel/agregarFamilia" method="POST" id="form">
                                     <div class="row my-3">
                                         <div class="col">
                                             <label for="nombre">Nombre</label>
@@ -59,3 +59,23 @@
     include ("layouts/footer.php");
 
 ?>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $("#form").validate({
+            rules: {
+                nombre : {
+                    required: true,
+                    maxlength: 40
+                }  
+            },
+            messages : {
+                nombre: {
+                    required: "Este campo es obligatorio",
+                    maxlength: "No debe tener más de 40 caracteres"
+                }  
+            }
+        });
+    });
+</script>
