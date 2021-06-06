@@ -71,10 +71,14 @@
             return $request; //Retorna la consulta hecha en la clase SqlServer
         }
 
+        public function getInfoVenta(int $id){
+            $query = "SELECT * FROM web_ventas WHERE id = ".$id;
+            $request = $this->select($query);
 
-       
-     
-        
+            return $request; //Retorna la consulta hecha en la clase SqlServer
+        }
+
+          
     }
 
 ?>

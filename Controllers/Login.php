@@ -25,10 +25,12 @@ class login extends Controllers{
         if ($rows === true){
             session_start();//iniciando sesión
 			$_SESSION["usuario"] = $_POST['usuario'];//se almacena el nombre del usuario en la variable super global "$_SESSION['user']"
+            $_SESSION["id"] = "";
 
             while( $row = sqlsrv_fetch_array( $data, SQLSRV_FETCH_ASSOC) ) {
                 //echo $row['nombre'].", ".$row['id_rol']."<br />";
                 $_SESSION["rol"] = $row['id_rol'];
+                $_SESSION["id"] = $row['id'];
 
             }
 

@@ -1,5 +1,13 @@
 <?php 
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+require 'phpmailer/Exception.php';
+require 'phpmailer/PHPMailer.php';
+require 'phpmailer/SMTP.php';
+
 class home extends Controllers{
     
     public function __construct(){
@@ -159,9 +167,18 @@ class home extends Controllers{
 	}
 
     public function terminarCompra(){
+        session_start();//iniciando sesión
 		$idCompra = $_POST["folio_h"];
-		$idCliente = 2;
+		$idCliente = $_SESSION["id"] ;
 		$total = $_POST["total_h"];
+
+        $r_cliente = $this->model->getInfoCliente($idCliente);
+
+        while( $row1 = sqlsrv_fetch_array( $r_cliente , SQLSRV_FETCH_ASSOC) ) {
+            $destino = $row1['email'];
+            $cliente = $row1['nombre']." ".$row1['apellidos'];
+            $dni = $row1['dni'];
+        }
 
 		$resultadoId = $this->model->addVentas($idCompra,$idCliente,$total);
 
@@ -177,6 +194,9 @@ class home extends Controllers{
             }
 
 			$this->model->eliminaProdTemp();
+
+            $this->emailPedido($destino, $cliente,$dni);
+            $this->emailPago($destino, $cliente,  $dni);
 		
 
 		header("Location: http://localhost/Tienda/home/home");
@@ -212,8 +232,83 @@ class home extends Controllers{
        //header("Location: http://localhost/Tienda/home/home");
     }
 
-    
 
+    public function emailPedido(string $destino, string $cliente, string $dni){
+        $mail = new PHPMailer(true);
+
+        try {
+            //Server settings
+            //$mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+            $mail->isSMTP();                                            //Send using SMTP
+            $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+            $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+            $mail->Username   = 'mailerclavijo@gmail.com';                     //SMTP username
+            $mail->Password   = 'tienda12345';                               //SMTP password
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         //Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
+            $mail->Port       = 587;                                    //TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
+
+            //Recipients
+            $mail->setFrom('mailerclavijo@gmail.com', 'Mailer');
+            $mail->addAddress('mailerclavijo@gmail.com', 'Mailer');     //Add a recipient
+            $mail->addAddress($destino);               //Name is optional
+            //$mail->addReplyTo('info@example.com', 'Information');
+            //$mail->addCC('cc@example.com');
+            //$mail->addBCC('bcc@example.com');
+
+            //Attachments
+            //$mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
+            //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+
+            //Content
+            $mail->isHTML(true);                                  //Set email format to HTML
+            $mail->Subject = 'Nuevo pedido';
+            $mail->Body    = 'El cliente "'.$cliente.'" con DNI "'.$dni.'" ha realizado un nuevo pedido';
+
+            $mail->send();
+            echo 'Message has been sent';
+        } catch (Exception $e) {
+            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        }
+    }
+
+    
+    public function emailPago(string $destino, string $cliente, string $dni){
+        $mail = new PHPMailer(true);
+
+        try {
+            //Server settings
+            $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+            $mail->isSMTP();                                            //Send using SMTP
+            $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+            $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+            $mail->Username   = 'mailerclavijo@gmail.com';                     //SMTP username
+            $mail->Password   = 'tienda12345';                               //SMTP password
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         //Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
+            $mail->Port       = 587;                                    //TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
+
+            //Recipients
+            $mail->setFrom('mailerclavijo@gmail.com', 'Mailer');
+            $mail->addAddress('mailerclavijo@gmail.com', 'Mailer');     //Add a recipient
+            $mail->addAddress($destino);               //Name is optional
+            //$mail->addReplyTo('info@example.com', 'Information');
+            //$mail->addCC('cc@example.com');
+            //$mail->addBCC('bcc@example.com');
+
+            //Attachments
+            //$mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
+            //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+
+            //Content
+            $mail->isHTML(true);                                  //Set email format to HTML
+            $mail->Subject = 'Nuevo pago';
+            $mail->Body    = 'El cliente "'.$cliente.'" con DNI "'.$dni.'" ha realizado un pago';
+
+            $mail->send();
+            echo 'Message has been sent';
+        } catch (Exception $e) {
+            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        }
+    }
 
 
 

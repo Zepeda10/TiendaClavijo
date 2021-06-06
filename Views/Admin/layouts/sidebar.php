@@ -83,12 +83,28 @@
 
                     <?php  } ?>
 
+                    <?php  if($_SESSION['rol'] == 1  ){ ?>
+                        
+                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark"
+                                href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span
+                                    class="hide-menu">Ventas Físicas </span></a>
+                            <ul aria-expanded="false" class="collapse  first-level">
+
+                                <li class="sidebar-item"><a href="../ventas/ver_ventas" class="sidebar-link"><i
+                                            class="mdi mdi-note-outline"></i><span class="hide-menu"> Ventas
+                                        </span></a></li>        
+                            </ul>
+                        </li>
+
+                    <?php  } ?>
+
+
                     <?php  if($_SESSION['rol'] == 1 || $_SESSION['rol'] == 5 ){ ?>
 
-                      <!--  <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                href="grid.html" aria-expanded="false"><i class="mdi mdi-blur-linear"></i><span
+                      <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                href="../ventas/ventas" aria-expanded="false"><i class="mdi mdi-blur-linear"></i><span
                                     class="hide-menu">Vender</span></a></li>
-                        -->
+                        
                     <?php  } ?>
 
                 
