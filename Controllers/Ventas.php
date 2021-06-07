@@ -171,17 +171,12 @@ class ventas extends Controllers{
 	}
 
     public function terminarCompra(){
-
+        session_start();
 		$idCompra = $_POST["id_compra"];
-		$idUsuario = 27;
+		$idUsuario = $_SESSION["id"];
 		$total = $_POST["total"];
         $id_venta = 0;
 
-        echo $idCompra;
-        echo "<br>";
-        echo $idUsuario;
-        echo "<br>";
-        echo $total;
 
 		$resultadoId = $this->model->insertaProdHist($idCompra,$idUsuario,$total);
 

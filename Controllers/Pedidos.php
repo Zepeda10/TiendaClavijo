@@ -38,6 +38,26 @@ class pedidos extends Controllers{
 		header("Location: http://localhost/Tienda/pedidos/pedidos");
     }
 
+    public function factura($id){
+        $idCliente = 0;
+        $idVenta = $id;
+        $fecha = "";
+        $data['venta'] = $this->model->getDetalles($id);
+
+        $result = $this->model->getInfoVenta($idVenta);
+
+        while( $row = sqlsrv_fetch_array( $result, SQLSRV_FETCH_ASSOC) ){
+            $idCliente = $row['id_cliente'];
+            $fecha = $row['fecha'];
+        }
+
+        $data['fecha'] = $fecha;
+
+        $data['cliente'] = $this->model->getInfoCliente($idCliente);
+        $this->views->getView($this,"factura",$data);
+    }
+
+
     public function confirmar($id){
         $this->model->confirmarPedido($id);
 
@@ -48,8 +68,10 @@ class pedidos extends Controllers{
 
         $this->emailDespachado($folio);
 
+        //$detalle = $this->model->getDetalles($id);
 
-	    header("Location: http://localhost/Tienda/pedidos/pedidos");
+
+	    header("Location: http://localhost/Tienda/factura/factura/".$id);
     }
 
     public function eliminaConf($id){

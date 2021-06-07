@@ -78,6 +78,13 @@
             return $request; //Retorna la consulta hecha en la clase SqlServer
         }
 
+        public function getInfoCliente(int $id){
+            $query = "SELECT * FROM usuarios WHERE id = ".$id;
+            $request = $this->select($query);
+
+            return $request; //Retorna la consulta hecha en la clase SqlServer
+        }
+
           
     }
 
