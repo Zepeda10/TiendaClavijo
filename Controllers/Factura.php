@@ -50,17 +50,12 @@ class factura extends Controllers{
         {
             $code = $row["cantidad"];
             $name = substr($row["producto"],0,20);
-            $real_price = $row["precio"];
-            $price_to_show = number_format($row["precio"]);
-            $idVenta = $row['id_venta'];
+            $precio = $row["precio"];
 
             $column_code = $column_code.$code."\n";
             $column_name = $column_name.$name."\n";
-            $column_price = $column_price.$price_to_show."\n";
+            $column_price = $column_price.$precio."\n";
 
-            //Sum all the Prices (TOTAL)
-            $total = $total+$real_price;
-            $number_of_products++;
         }
 
 
@@ -70,9 +65,6 @@ class factura extends Controllers{
             $email =  $row['email'];
         }
 
-
-        //Convert the Total Price to a number with (.) for thousands, and (,) for decimals.
-        $total = number_format($total);
 
         //Create a new PDF file
         $pdf=new FPDF();
@@ -123,7 +115,7 @@ class factura extends Controllers{
         $pdf->SetY($Y_Table_Position);
 
         $pdf->SetX(135);
-        $pdf->MultiCell(30,6,'$ '.$total,1,'R');
+        $pdf->MultiCell(30,6,'$ '.$column_price,1);
 
         //Create lines (boxes) for each ROW (Product)
         //If you don't use the following code, you don't create the lines separating each row

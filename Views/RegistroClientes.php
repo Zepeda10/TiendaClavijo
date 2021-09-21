@@ -25,7 +25,7 @@
                         </h3>
                     </div>
 
-                        <form action="../login/registrarse" method="POST" class="mt-5">
+                        <form action="../login/registrarse" method="POST" class="mt-5" id="form">
                             <div class="row my-4">
                                 <div class="col">
                                     <input type="text" name="nombre" class="form-control border border-secondary" placeholder="Nombre">
@@ -64,4 +64,77 @@
     </div>
 </body>
 </html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $("#form").validate({
+            rules: {
+                nombre : {
+                    required: true,
+                    maxlength: 40
+                },
+                apellidos : {
+                    required: true,
+                    maxlength: 60
+                },
+                dni : {
+                    required: true,
+                    maxlength: 15
+                },
+                celular : {
+                    required: true,
+                    maxlength: 15,
+                    number: true
+                },
+                direccion : {
+                    required: true,
+                    maxlength: 120
+                },
+                email : {
+                    required: true,
+                    maxlength: 40,
+                    email: true
+                },
+                pass : {
+                    required: true,
+                    maxlength: 40
+                }  
+            },
+            messages : {
+                nombre: {
+                    required: "Este campo es obligatorio",
+                    maxlength: "No debe tener más de 40 caracteres"
+                },
+                apellidos : {
+                    required: "Este campo es obligatorio",
+                    maxlength: "No debe tener más de 60 caracteres"
+                },
+                dni : {
+                    required: "Este campo es obligatorio",
+                    maxlength: "No debe tener más de 15 caracteres"
+                },
+                celular : {
+                    required: "Este campo es obligatorio",
+                    maxlength: "No debe tener más de 15 caracteres",
+                    number: "Solo debe contener números"
+                },
+                direccion : {
+                    required: "Este campo es obligatorio",
+                    maxlength: "No debe tener más de 120 caracteres",           
+                },
+                email : {
+                    required: "Este campo es obligatorio",
+                    maxlength: "No debe tener más de 40 caracteres",
+                    email: "Introduzca un email válido"
+                },
+                pass : {
+                    required: "Este campo es obligatorio",
+                    maxlength: "No debe tener más de 40 caracteres"
+                }  
+            }
+        });
+    });
+</script>
 

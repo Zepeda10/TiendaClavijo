@@ -291,8 +291,8 @@
 			<div class="row isotope-grid">
 			
 			<div class="mx-5 mt-3 isotope-item">
-			<h4 class="mx-2 my-2 text-justify">Empresa Peurana con mas de 30 años en el mercado, dedicada a la venta de Productos de Electronica, Telefonia, Ferreteria, Industrial, Computo, Sonido, Seguridad, etc.</h4>
-				<img class='imagen' src='../imagenes_subidas/nosotros.png'  />
+			<h4 class="mx-2 my-2 text-justify">Empresa nacional con mas de 30 años en el mercado, dedicada a la venta de Productos de Electronica, Telefonia, Ferreteria, Industrial, Computo, Sonido, Seguridad, etc.</h4>
+				<img class='imagen' src='../imagenes_subidas/Nosotros.png'  />
 			</div>
 			
 			</div>

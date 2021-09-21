@@ -7,7 +7,7 @@
         }
 
         public function buscaProducto(string $producto){
-            $query = "SELECT p.id, p.cod_barras, p.nombre, p.descripcion, p.precio_compra, p.precio_venta, p.stock, p.estado, p.imagen, f.nombre as 'fam' FROM Productos p inner join Familias f on p.id_familia = f.id WHERE p.nombre = '".$producto."'";
+            $query = "SELECT p.id, p.cod_barras, p.nombre, p.descripcion, p.precio_compra, p.precio_venta, p.stock, p.estado, p.imagen, f.nombre as 'fam' FROM Productos p inner join Familias f on p.id_familia = f.id WHERE p.nombre LIKE '%".$producto."%' ";
             $request = $this->select_all($query);
 
             return $request; //Retorna la consulta hecha en la clase SqlServer
